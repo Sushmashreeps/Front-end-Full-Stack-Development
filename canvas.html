@@ -1,0 +1,121 @@
+
+<script type="text/javascript">
+var num = prompt("Enter a number : \n", "");
+var msgstr;
+a)if(num ><html>
+ <head>
+<title>Fibonacci Series</title>
+ </head>
+ <body>
+ <script type="text/javascript">
+var fib1=0,fib2=1,fib=0;
+var num=prompt("Enter a number : \n", "");
+ if(num != null && num > 0 )
+{
+document.write("<h1>The first "+num+" numbers in the fibonacci series </h1>");
+if(num==1)
+document.write("<h2> "+ fib1 + "</h2>");
+else
+{
+document.write("<h2>" + fib1 + "</h2>");
+document.write("<h2>" + fib2 + "</h2>");
+}
+for(i=3;i<=num; i++)
+{
+fib= fib1 + fib2;
+document.write("<h2> " + fib + "</h2>");
+fib1=fib2;
+fib2=fib;
+}
+}
+else
+alert("Invalid Input");
+ </script>
+ </body>
+</html>
+
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Number and its squares</title>
+</head>
+<body>
+ 0 && num !=null){
+msgstr="Number and its Squares are \n";
+for(i=1;i <= num; i++)
+{
+msgstr = msgstr + i + " ^ 2 = " + i*i + "\n";
+}
+alert(msgstr);
+}
+else
+alert("Invalid Input");
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>Canvas Example</title> 
+<style> 
+canvas { 
+border: 1px solid black; 
+} 
+</style> 
+</head> 
+<body> 
+<header> 
+<h1>Canvas Example</h1> 
+<p>Draw on the canvas by clicking and dragging the mouse</p> 
+</header> 
+<article> 
+<h2>Canvas</h2>
+<canvas id="myCanvas" width="400" height="400" onmousedown="startDrawing(event)" onmousemove="drawLine(event)" onmouseup="stopDrawing(event)"></canvas> 
+</article> 
+<script> 
+var canvas = document.getElementById("myCanvas"); 
+var ctx = canvas.getContext("2d"); 
+var isDrawing = false; 
+function startDrawing(event) { 
+isDrawing = true; 
+var x = event.clientX - canvas.offsetLeft; 
+var y = event.clientY - canvas.offsetTop; 
+ctx.beginPath(); 
+ctx.moveTo(x, y); 
+} 
+function drawLine(event) { 
+if (isDrawing) { 
+var x = event.clientX - canvas.offsetLeft; 
+var y = event.clientY - canvas.offsetTop; 
+ctx.lineTo(x, y); 
+ctx.stroke(); 
+} 
+} 
+function stopDrawing(event) { 
+isDrawing = false; 
+} 
+</script> 
+</body> </html> 
+
+
+
