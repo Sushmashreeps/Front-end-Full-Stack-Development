@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Management Application</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    margin-top: 10%;
+    border-radius: 10%;
+    background-color: #c5eabe;
+    
+  }
+  .container {
+    max-width: 500px;
+    max-height: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f2f8f3;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(206, 15, 15, 0.1);
+  }
+  h1 {
+    text-align: center;
+    color: brown;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  input[type="text"], textarea {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  input[type="submit"] {
+    background-color: #535bfc;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .task-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  .task {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .completed {
+    background-color: #f0f8ff; /* Light blue */
+    text-decoration: line-through;
+  }
+  .task-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .task-actions button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .delete-btn {
+    background-color: #f44336; /* Red */
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Task Management Application</h1>
+  <form id="task-form">
+    <input type="text" id="task-title" placeholder="Task Title" required>
+    <textarea id="task-description" placeholder="Task Description" required></textarea>
+    <input type="submit" value="Add Task">
+  </form>
+
+  <ul class="task-list" id="task-list">
+    <!-- Tasks will be dynamically added here -->
+  </ul>
+</div>
+
+<script>
+  const form = document.getElementById("task-form");
+  const taskList = document.getElementById("task-list");
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Get task title and description from form
+    const title = document.getElementById("task-title").value;
+    const description = document.getElementById("task-description").value;
+
+    // Add task to task list
+    addTask(title, description);
+
+    // Reset form fields
+    form.reset();
+  });
+
+  // Function to add a new task
+  function addTask(title, description) {
+    // Create task element
+    const task = document.createElement("li");
+    task.classList.add("task");
+
+    // Create task content
+    const taskContent = `
+      <div>
+        <h3>${title}</h3>
+        <p>${description}</p>
+      </div>
+      <div class="task-actions">
+        <button class="complete-btn">Mark as Completed</button>
+        <button class="delete-btn">Delete</button>
+      </div>
+    `;
+    task.innerHTML = taskContent;
+
+    // Add event listeners for task actions
+    const completeBtn = task.querySelector(".complete-btn");
+    const deleteBtn = task.querySelector(".delete-btn");
+
+    completeBtn.addEventListener("click", function() {
+      task.classList.toggle("completed");
+    });
+
+    deleteBtn.addEventListener("click", function() {
+      task.remove();
+    });
+
+    // Append task to task list
+    taskList.appendChild(task);
+    alert("saved")
+  }
+</script>
+
+</body>
+</html>
