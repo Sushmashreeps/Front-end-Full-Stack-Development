@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Shopping Cart</title>
+<style>
+  *{
+    size: 100px;
+    font-size: 100px;
+    border-radius: 100px;
+    box-shadow: 100px;
+  }
+    body{
+        border: 100px;
+        border-color: black;
+        box-sizing: 100px;
+        size: 100px;
+        font-size: 100px;
+        margin-top: 15%;
+        margin-right: 20%;
+        margin-left: 40%;
+        /* padding: 50px; */
+        box-shadow: rgb(red, green, blue);
+        box-sizing: border-box;
+        background-color: pink;
+    }
+    h1{
+        font: blue;
+        font-size: medium;
+        font-family: Arial, Helvetica, sans-serif;
+        color: brown;
+
+    }
+  #cart-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  #cart-list li {
+    margin-bottom: 5px;
+  }
+</style>
+</head>
+<body>
+  <h1>Simple Shopping Cart</h1>
+  
+  <label for="item-name">Item Name:</label>
+  <input type="text" id="item-name" ><br>
+  
+  <label for="item-price">Item Price:</label>
+  <input type="number" id="item-price" min="0" step="0.01"><br>
+  
+  <button onclick="addItem()">Add to Cart</button>
+  
+  <ul id="cart-list"></ul>
+  
+  <div>Total Price: $<span id="total-price">0.00</span></div>
+  
+  <script>
+    function addItem() {
+      var itemName = document.getElementById("item-name").value;
+      var itemPrice = parseFloat(document.getElementById("item-price").value);
+      
+      if (!itemName || isNaN(itemPrice) || itemPrice <= 0) {
+        alert("Please enter a valid item name and price.");
+        return;
+      }
+      
+      var item = {
+        name: itemName,
+        price: itemPrice
+      };
+      
+      addItemToCart(item);
+      updateTotalPrice();
+    }
+    
+    function addItemToCart(item) {
+      var cartList = document.getElementById("cart-list");
+      var li = document.createElement("li");
+      li.textContent = item.name + " - $" + item.price.toFixed(2);
+      
+      var removeBtn = document.createElement("button");
+      removeBtn.textContent = "Remove";
+      removeBtn.onclick = function() {
+        cartList.removeChild(li);
+        updateTotalPrice();
+      };
+      
+      li.appendChild(removeBtn);
+      cartList.appendChild(li);
+    }
+    
+    function updateTotalPrice() {
+      var total = 0;
+      var cartList = document.getElementById("cart-list").getElementsByTagName("li");
+      for (var i = 0; i < cartList.length; i++) {
+        var itemPrice = parseFloat(cartList[i].textContent.split(" - $")[1]);
+        total += itemPrice;
+      }
+      document.getElementById("total-price").textContent = total.toFixed(2);
+    }
+  </script>
+</body>
+</html>
